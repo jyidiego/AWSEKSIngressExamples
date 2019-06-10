@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: "appc-deployment"
+  namespace: "webservers"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "appc"
+    spec:
+      containers:
+      - image: 255033994748.dkr.ecr.us-east-1.amazonaws.com/appc:latest
+        imagePullPolicy: Always
+        name: "appc"
+        ports:
+        - containerPort: 5000 

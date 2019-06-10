@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "apps-ingress"
+  namespace: "webservers"
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+  labels:
+    app: webservers-ingress
+spec:
+  rules:
+    -   host: apps.petclinic.jyidiego.net 
+        http:
+          paths:
+          - path: /appa
+            backend:
+              serviceName: "service-appa"
+              servicePort: 80
+          - path: /appb
+            backend:
+              serviceName: "service-appb"
+              servicePort: 80
+    -   host: appc.petclinic.jyidiego.net 
+        http:
+          paths:
+          - path: /
+            backend:
+              serviceName: "service-appc"
+              servicePort: 80
